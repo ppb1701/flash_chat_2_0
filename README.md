@@ -1,5 +1,7 @@
 Revising to new Flash Chat 2.0.  This will be incorporating some things I've learned and customizing/expanding the app.
 
+NOTE:  You will need to set up a Firebase account to run if you want to try it on IOS.  the Google plist file is removed from github.
+
 ![App Brewery Banner](https://github.com/londonappbrewery/Images/blob/master/AppBreweryBanner.png)
 
 

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:bubble/bubble.dart';
 
 class MessageBubble extends StatelessWidget {
   final String sender;
@@ -13,7 +14,8 @@ class MessageBubble extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Column(
-        crossAxisAlignment: isMe? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        crossAxisAlignment:
+            !isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Text(
             '$sender',
@@ -22,21 +24,16 @@ class MessageBubble extends StatelessWidget {
               color: Colors.black54,
             ),
           ),
-          Material(
-            borderRadius: BorderRadius.only(
-                topLeft: isMe? Radius.circular(30.0) : Radius.circular(0),
-                topRight: !isMe? Radius.circular(30.0) : Radius.circular(0),
-                bottomLeft: Radius.circular(30.0),
-                bottomRight: Radius.circular(30.0)),
-            elevation: 5.0,
-            color: isMe? Colors.lightBlueAccent: Colors.white,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Text(
-                '$text',
-                style: TextStyle(color: isMe? Colors.white :Colors.black54, fontSize: 15.0),
-              ),
-            ),
+          Bubble(
+            margin: BubbleEdges.only(top: 10),
+            radius: Radius.elliptical(5.0,20.0),
+            elevation: 4.0,
+            alignment: !isMe ? Alignment.topRight : Alignment.topLeft,
+            nipWidth: 20,
+            nipHeight: 12,
+            nip: isMe ? BubbleNip.leftBottom : BubbleNip.rightBottom,
+            color: isMe ? Colors.lightBlueAccent : Colors.white,
+            child: Text('$text', textAlign: !isMe ? TextAlign.left : TextAlign.right),
           ),
         ],
       ),
