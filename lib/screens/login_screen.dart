@@ -16,7 +16,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-  bool showSpinner=false;
+  bool showSpinner = false;
   final _auth = FirebaseAuth.instance;
   String email;
   String password;
@@ -46,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 48.0,
               ),
               TextField(
+                autofocus: true,
                 keyboardType: TextInputType.emailAddress,
                 style: kTextFieldStyle,
                 textAlign: TextAlign.center,
@@ -72,28 +73,30 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 24.0,
               ),
               RoundedButton(
-                  text: 'Login',
-                  onPressed: () async {
-                    setState((){
-                      showSpinner = true;
-                    });
-                    try {
-                      final user = await _auth.signInWithEmailAndPassword(
-                          email: email, password: password);
-                      if(user!=null){
-                        Navigator.pushNamed(context, ChatScreen.id);
-                        setState((){
-                          showSpinner = false;
-                        });
-                      }
-                    } catch (e) {
-                      print(e);
-                      setState((){
+                text: 'Login',
+                onPressed: () async {
+                  setState(() {
+                    showSpinner = true;
+                  });
+                  try {
+                    final user = await _auth.signInWithEmailAndPassword(
+                        email: email, password: password);
+                    if (user != null) {
+                      Navigator.pushNamed(context, ChatScreen.id);
+                      setState(() {
                         showSpinner = false;
                       });
                     }
-                  },
-                  color: Colors.lightBlueAccent),
+                  } catch (e) {
+                    print(e);
+                    setState(() {
+                      showSpinner = false;
+                    });
+                  }
+                },
+                color: Colors.blueAccent,
+                fontColor: Colors.white,
+              ),
             ],
           ),
         ),

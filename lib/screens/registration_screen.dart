@@ -45,6 +45,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: 48.0,
               ),
               TextField(
+                autofocus: true,
                 keyboardType: TextInputType.emailAddress,
                 style: kTextFieldStyle,
                 textAlign: TextAlign.center,
@@ -73,28 +74,30 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: 24.0,
               ),
               RoundedButton(
-                  text: 'Register',
-                  onPressed: () async {
-                    setState((){
-                      showSpinner = true;
-                    });
-                    try {
-                      final newUser = await _auth.createUserWithEmailAndPassword(
-                          email: email, password: password);
-                      if(newUser!=null){
-                        Navigator.pushNamed(context, ChatScreen.id);
-                        setState((){
-                          showSpinner = false;
-                        });
-                      }
-                    } catch (e) {
-                      print(e);
-                      setState((){
+                text: 'Register',
+                onPressed: () async {
+                  setState(() {
+                    showSpinner = true;
+                  });
+                  try {
+                    final newUser = await _auth.createUserWithEmailAndPassword(
+                        email: email, password: password);
+                    if (newUser != null) {
+                      Navigator.pushNamed(context, ChatScreen.id);
+                      setState(() {
                         showSpinner = false;
                       });
                     }
-                  },
-                  color: Colors.lightBlueAccent),
+                  } catch (e) {
+                    print(e);
+                    setState(() {
+                      showSpinner = false;
+                    });
+                  }
+                },
+                color: Colors.blueAccent,
+                fontColor: Colors.white,
+              ),
             ],
           ),
         ),

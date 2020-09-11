@@ -20,7 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   void initState() {
     super.initState();
     controller = AnimationController(
-      duration: Duration(seconds: 1),
+      duration: Duration(seconds: 3),
       vsync: this,
     );
     animation = ColorTween(
@@ -54,11 +54,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     height: 60.0,
                   ),
                 ),
-                TypewriterAnimatedTextKit(
-                  text: ['Flash Chat'],
-                  textStyle: TextStyle(
-                    fontSize: 40.0,
-                    fontWeight: FontWeight.w900,
+                Expanded(
+                  child: Text(
+                    'Flash Chat 2.0',
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                 ),
               ],
@@ -67,9 +69,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 TypewriterAnimatedTextKit(
-                  text: ['2.0'],
+                  speed:  Duration(seconds: 1),
+                  text: ['Chat', 'Collaborate', 'Catch Up'],
                   textStyle: TextStyle(
-                    fontSize: 40.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -79,17 +82,21 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               height: 48.0,
             ),
             RoundedButton(
-                text: 'Log In',
-                onPressed: () {
-                  Navigator.pushNamed(context, LoginScreen.id);
-                },
-                color: Colors.blueAccent),
+              text: 'Log In',
+              onPressed: () {
+                Navigator.pushNamed(context, LoginScreen.id);
+              },
+              color: Colors.blueAccent,
+              fontColor: Colors.white,
+            ),
             RoundedButton(
-                text: 'Register',
-                onPressed: () {
-                  Navigator.pushNamed(context, RegistrationScreen.id);
-                },
-                color: Colors.blueAccent),
+              text: 'Register',
+              onPressed: () {
+                Navigator.pushNamed(context, RegistrationScreen.id);
+              },
+              color: Colors.blueAccent,
+              fontColor: Colors.white,
+            ),
           ],
         ),
       ),
